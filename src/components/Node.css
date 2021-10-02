@@ -1,0 +1,34 @@
+.node, .visited_node, .start_node, .end_node{
+    /* display: block; */
+    /* background-color: white; */
+    /* border: solid black 2px; */
+    width:50px;
+    height: 50px;
+    border-radius: 9px;
+}
+
+.visited_node{
+    background-color: black;
+    
+}
+
+.start_node{
+    background-color: rgb(55, 148, 160);
+}
+
+.end_node{
+    background-color: rgb(49, 197, 123);
+}
+
+.node-btn{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: solid 1px #282c34;
+    
+}
+
+.node-btn:mouse{
+    /* background-color: pink; */
+}
+
