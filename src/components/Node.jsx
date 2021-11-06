@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
 import './Node.css';
 
-const Node = ({row, col}) => {
+const Node = ({row, col, isStart, isEnd, isVisited, isBoundary, handleMouseDown, onMouseEnter, onMouseUp}) => {
 
-    const [start, setStart] = useState(false);
+    //const [start, setStart] = useState(false);
 
-    const toggleStart = () =>{
-        setStart(!start);
-    }
-
-    const mouseOver = (e) => {
-        console.log(e);
-    }
+    
 
     return( 
-        <div className={start ? 'end_node' : 'start_node'}>
-            <button className='node-btn' onClick={toggleStart} onMouseOver={(e) => mouseOver(e)} onMouseDown={toggleStart} onMouseUp={toggleStart}></button>
+        <div className={isStart ? 'start_node' : isEnd ? 'end_node' : 'unvisited_node'}
+            onMouseDown={() => handleMouseDown(row, col)}
+            //onMouseEnter={() => onMouseEnter(row,col)}
+            onMouseUp={() => console.log('')}
+            >
+            {/* <button className='node-btn' onClick={toggleStart} onMouseOver={(e) => mouseOver(e)} onMouseDown={toggleStart} onMouseUp={toggleStart}></button> */}
+            <button className='node-btn'></button>
         </div>
     )
 }
 
 export default Node;
+

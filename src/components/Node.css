@@ -7,9 +7,12 @@
     border-radius: 9px;
 }
 
+.unvisited_node{
+    background-color: rgb(51, 55, 56);
+}
+
 .visited_node{
     background-color: black;
-    
 }
 
 .start_node{
@@ -19,6 +22,7 @@
 .end_node{
     background-color: rgb(49, 197, 123);
 }
+
 
 .node-btn{
     width: 100%;

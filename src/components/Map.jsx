@@ -1,13 +1,18 @@
-import { NODE_FIELDS } from '@babel/types';
-import React, { useState, useEffect } from 'react';
+
+import { findByPlaceholderText } from '@testing-library/dom';
+import React, { useState, useEffect, useCallback } from 'react';
 import Node from './Node';
 
 
-function Map(){
 
+
+
+function Map(){
     const row_size = 20;
     const col_size = 30;
 
+    let [isClicked, setIsClicked] = useState(false);    
+    
     let nodes = [];
     const renderBoard = () => {
         for(let i = 0; i < row_size; i++){
@@ -26,14 +31,48 @@ function Map(){
     renderBoard();
     console.log(nodes);
 
+
+
+    const findPath = () => {
+        console.log(nodes);
+    }
+
+    const handleMouseDown = useCallback((row, col) => {
+        console.log('handleMouseDown')
+    }, isClicked)
+
+
+    const onMouseEnter = () => {
+        console.log('mouse enter')
+    }
+
+    const onMouseUp = () => {
+        setIsClicked(false);
+    }
+
+
     if(nodes.length === 0)
         return (<div className="App-header">{nodes.length}</div>)
     return (
     <div className="App-header">
+        <button onClick={findPath}>path</button>
         <div className="map">
-            {nodes.map((row, rowIndex) => {
-                return (row.map((col, colIndex) => {
-                    return (<Node row={rowIndex} col={colIndex}></Node>)
+            {nodes.map((row, x) => {
+                return (row.map((col, y) => {
+                    if(x == 0 && y == 0)
+                        return (
+                        <Node 
+                            row={x} 
+                            col={y}     
+                            isStart={true} 
+                            handleMouseDown={handleMouseDown} 
+                            onMouseEnter={onMouseEnter} 
+                            onMouseUp={onMouseUp}>                                
+                        </Node>
+                        ) // hardcode source
+                    if(x == 10 && y == 15)
+                        return (<Node row={x} col={y} isEnd={true}></Node>) // hardcode destination
+                    return (<Node row={x} col={y}></Node>)
                 }))
                 
             })}
